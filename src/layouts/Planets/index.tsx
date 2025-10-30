@@ -4,13 +4,17 @@ import { GET_PLANETS } from "../../lib/graphql/queries";
 import { PlanetsResponse } from "../../types/back-end/planets";
 
 export async function PlanetsLayout() {
-  const { data, error } = await client.query<{ planets: PlanetsResponse }>({ query: GET_PLANETS })
+  const { data, error } = await client.query<{ planets: PlanetsResponse }>({
+    query: GET_PLANETS,
+  });
 
-  if (error) return null
+  if (error) return null;
 
   return (
     <section className="grid grid-cols-3 gap-5">
-      {data.planets.results.map(result => <Card {...result} key={result.name} />)}
+      {data.planets.results.map((result) => (
+        <Card {...result} key={result.name} />
+      ))}
     </section>
-  ) 
+  );
 }

@@ -7,7 +7,9 @@ export async function fetchPlanets({
   page,
   limit,
 }: FetchPlanetsParams): Promise<PlanetsResponse> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/starwars/planets`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST}/api/starwars/planets`,
+  );
 
   if (!response.ok) {
     return {} as PlanetsResponse;
