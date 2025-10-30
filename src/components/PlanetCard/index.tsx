@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Film, Planet } from "../../types/back-end/planets";
+import { Film, Planet } from "../../types/backend/planets";
 
 export type PlanetCardProps = {
   films: Pick<Film, "title">[];
@@ -36,16 +36,11 @@ export function Card(planet: PlanetCardProps) {
 
       <div>
         <span className="font-semibold">Appears in:</span>&ensp;
-        {!!planet.films.length &&
-          planet.films.map((film, i) => (
-            <span key={film.title} className="text-neutral-500">
-              {film.title}
-              {i < planet.films.length - 1 && ", "}
-            </span>
-          ))}
-        {!planet.films.length && (
-          <span className="text-neutral-500">Unknown</span>
-        )}
+        <span className="text-neutral-500">
+          {!!planet.films.length
+            ? planet.films.map(({ title }) => title).join(", ")
+            : "Unknown"}
+        </span>
       </div>
     </Link>
   );

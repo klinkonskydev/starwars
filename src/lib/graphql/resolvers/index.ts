@@ -5,7 +5,8 @@ import {
   Film,
   Species,
   Vehicle,
-} from "../../../types/back-end/planets";
+} from "../../../types/backend/planets";
+import { GraphqlPerson, GraphqlPlanet } from "../../../types/graphql/planets";
 import { MAX_PLANETS_QUANTITY } from "../../../utils/constant";
 import { fetchPlanets, fetchMultiple, fetchPlanet } from "../../api";
 
@@ -27,21 +28,21 @@ export const resolvers = {
   },
 
   Planet: {
-    residents: async (parent: Planet): Promise<Person[]> => {
+    residents: async (parent: GraphqlPlanet): Promise<Person[]> => {
       return fetchMultiple<Person>(parent.residents);
     },
 
-    films: async (parent: Planet): Promise<Film[]> => {
+    films: async (parent: GraphqlPlanet): Promise<Film[]> => {
       return fetchMultiple<Film>(parent.films);
     },
   },
 
   Person: {
-    species: async (parent: Person): Promise<Species[]> => {
+    species: async (parent: GraphqlPerson): Promise<Species[]> => {
       return fetchMultiple<Species>(parent.species);
     },
 
-    vehicles: async (parent: Person): Promise<Vehicle[]> => {
+    vehicles: async (parent: GraphqlPerson): Promise<Vehicle[]> => {
       return fetchMultiple<Vehicle>(parent.vehicles);
     },
   },

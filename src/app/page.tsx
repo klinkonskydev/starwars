@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { PlanetsLayout } from "../layouts/Planets";
 import { Usable, use } from "react";
+import { PlanetCardList } from "../components/PlanetCardList";
 
 export default function Home({
   searchParams,
@@ -22,7 +22,7 @@ export default function Home({
       </header>
 
       <section className="px-10 mx-auto max-w-7xl">
-        <PlanetsLayout page={Number(params?.page) ?? 1} />
+        <PlanetCardList page={Number(params?.page) ?? 1} />
       </section>
     </main>
   );
