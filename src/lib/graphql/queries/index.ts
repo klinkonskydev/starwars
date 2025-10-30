@@ -11,6 +11,7 @@ export const GET_PLANETS = gql`
         diameter
         climate
         terrain
+        url
         films {
           title
           episode_id

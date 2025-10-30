@@ -1,8 +1,20 @@
-import { Planet } from "../../types/back-end/planets";
+import Link from "next/link";
+import { Film, Planet } from "../../types/back-end/planets";
 
-export function Card(planet: Planet) {
+export type PlanetCardProps = {
+  films: Pick<Film, "title">[];
+} & Pick<Planet, "name" | "terrain" | "diameter" | "climate" | "url">;
+
+export function Card(planet: PlanetCardProps) {
+  const planetNumber = planet.url.endsWith("/")
+    ? planet.url.slice(0, -1).split("/").slice(-1)[0]
+    : planet.url.split("/").slice(-1)[0];
+
   return (
-    <div className="bg-black border border-primary flex flex-col gap-5 py-5 px-10 text-white rounded-lg h-84 cursor-pointer hover:bg-yellow-950/5 transition-all">
+    <Link
+      href={`/${planetNumber}`}
+      className="bg-black border border-primary flex flex-col gap-5 py-5 px-10 text-white rounded-lg h-84 cursor-pointer hover:bg-yellow-950/5 transition-all"
+    >
       <p className="text-center text-primary font-medium text-xl">
         {planet.name}
       </p>
@@ -12,7 +24,10 @@ export function Card(planet: Planet) {
       </p>
       <p>
         <b>Diameter:</b>&ensp;
-        <span className="text-neutral-500">{planet.diameter}</span>
+        <span className="text-neutral-500">
+          {new Intl.NumberFormat("en").format(Number(planet?.diameter)) ||
+            "Unknown"}
+        </span>
       </p>
       <p>
         <b>Climate:</b>&ensp;
@@ -32,6 +47,6 @@ export function Card(planet: Planet) {
           <span className="text-neutral-500">Unknown</span>
         )}
       </div>
-    </div>
+    </Link>
   );
 }
