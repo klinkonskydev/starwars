@@ -3,8 +3,6 @@ import { cache } from "react";
 import { PlanetsResponse } from "../../../../types/back-end/planets";
 import { ONE_DAY_IN_SECONDS, QUERY_PARAMS } from "../../../../utils/constant";
 
-export const dynamic = "force-static";
-
 export const GET = cache(async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
@@ -15,7 +13,10 @@ export const GET = cache(async (req: NextRequest) => {
       {
         headers: { "Content-Type": "application/json" },
         cache: "force-cache",
-        next: { revalidate: ONE_DAY_IN_SECONDS },
+        next: {
+          revalidate: ONE_DAY_IN_SECONDS,
+          tags: ["planets", "page", page],
+        },
       },
     );
 

@@ -21,12 +21,16 @@ export function Card(planet: Planet) {
 
       <div>
         <span className="font-semibold">Appears in:</span>&ensp;
-        {planet.films.map((film, i) => (
-          <span key={film.title} className="text-neutral-500">
-            {film.title}
-            {i < planet.films.length - 1 && ", "}
-          </span>
-        ))}
+        {!!planet.films.length &&
+          planet.films.map((film, i) => (
+            <span key={film.title} className="text-neutral-500">
+              {film.title}
+              {i < planet.films.length - 1 && ", "}
+            </span>
+          ))}
+        {!planet.films.length && (
+          <span className="text-neutral-500">Unknown</span>
+        )}
       </div>
     </div>
   );
