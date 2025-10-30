@@ -1,20 +1,27 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { cache } from "react";
 import { PlanetsResponse } from "../../../../types/back-end/planets";
-import { ONE_DAY_IN_SECONDS } from "../../../../utils/constant";
+import { ONE_DAY_IN_SECONDS, QUERY_PARAMS } from "../../../../utils/constant";
 
-export const dynamic = "force-static";
-
-export const GET = cache(async () => {
+export const GET = cache(async (req: NextRequest) => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SWAPI}/planets`, {
-      headers: { "Content-Type": "application/json" },
-      cache: "force-cache",
-      next: { revalidate: ONE_DAY_IN_SECONDS },
-    });
+    const { searchParams } = new URL(req.url);
+    const page = searchParams.get(QUERY_PARAMS.PAGE);
+
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SWAPI}/planets/?page=${page}`,
+      {
+        headers: { "Content-Type": "application/json" },
+        cache: "force-cache",
+        next: {
+          revalidate: ONE_DAY_IN_SECONDS,
+          tags: ["planets", "page", page],
+        },
+      },
+    );
 
     const data: PlanetsResponse = await response.json();
-    console.log(data);
+
     return Response.json(data);
   } catch (err) {
     console.error({ err });

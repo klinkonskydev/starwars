@@ -1,27 +1,35 @@
+import { Planet, PlanetsResponse } from "../types/back-end/planets";
 import { ONE_DAY_IN_SECONDS } from "../utils/constant";
 
 type FetchPlanetsParams = { page?: number; limit?: number; id?: number };
 
-export async function fetchPlanets<T>({
+export async function fetchPlanets({
   page,
   limit,
-}: FetchPlanetsParams): Promise<T> {
-  const response = await fetch("http://localhost:3000/api/starwars/planets");
+}: FetchPlanetsParams): Promise<PlanetsResponse> {
+  const queryString = new URLSearchParams({
+    page: String(page),
+    limit: String(limit),
+  }).toString();
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST}/api/starwars/planets?${queryString}`,
+  );
 
   if (!response.ok) {
-    return {} as T;
+    return {} as PlanetsResponse;
   }
 
   return await response.json();
 }
 
-export async function fetchPlanet<T>({ id }: FetchPlanetsParams): Promise<T> {
+export async function fetchPlanet({ id }: FetchPlanetsParams): Promise<Planet> {
   const response = await fetch(
-    `http://localhost:3000/api/starwars/planets/${id}`,
+    `${process.env.NEXT_PUBLIC_HOST}/api/starwars/planets/${id}`,
   );
 
   if (!response.ok) {
-    return {} as T;
+    return {} as Planet;
   }
 
   return await response.json();

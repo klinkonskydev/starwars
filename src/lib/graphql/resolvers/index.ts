@@ -6,19 +6,23 @@ import {
   Species,
   Vehicle,
 } from "../../../types/back-end/planets";
+import { MAX_PLANETS_QUANTITY } from "../../../utils/constant";
 import { fetchPlanets, fetchMultiple, fetchPlanet } from "../../api";
 
 export const resolvers = {
   Query: {
     planets: async (
       _: any,
-      { page = 1 }: { page?: number },
+      {
+        page = 1,
+        limit = MAX_PLANETS_QUANTITY,
+      }: { page?: number; limit?: number },
     ): Promise<PlanetsResponse> => {
-      return fetchPlanets<PlanetsResponse>({ page, limit: 10 });
+      return fetchPlanets({ page, limit });
     },
 
     planet: async (_: any, { id }: { id?: number }): Promise<Planet> => {
-      return fetchPlanet<Planet>({ id });
+      return fetchPlanet({ id });
     },
   },
 
