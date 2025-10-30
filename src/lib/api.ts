@@ -7,8 +7,13 @@ export async function fetchPlanets({
   page,
   limit,
 }: FetchPlanetsParams): Promise<PlanetsResponse> {
+  const queryString = new URLSearchParams({
+    page: String(page),
+    limit: String(limit),
+  }).toString();
+
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST}/api/starwars/planets`,
+    `${process.env.NEXT_PUBLIC_HOST}/api/starwars/planets?${queryString}`,
   );
 
   if (!response.ok) {
