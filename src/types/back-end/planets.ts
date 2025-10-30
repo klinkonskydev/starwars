@@ -8,8 +8,8 @@ export type Planet = {
   terrain: string;
   surface_water: string;
   population: string;
-  residents: string[];
-  films: string[];
+  residents: Person[];
+  films: Film[];
   created: string;
   edited: string;
   url: string;
@@ -27,8 +27,8 @@ export type Person = {
   hair_color: string;
   eye_color: string;
   gender: string;
-  species: string[];
-  vehicles: string[];
+  species: Species[];
+  vehicles: Vehicle[];
   url: string;
 };
 

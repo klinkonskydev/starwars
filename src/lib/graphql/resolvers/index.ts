@@ -12,13 +12,13 @@ export const resolvers = {
   Query: {
     planets: async (
       _: any,
-      { page = 1 }: { page?: number },
+      { page = 1, limit = 10 }: { page?: number, limit?: number },
     ): Promise<PlanetsResponse> => {
-      return fetchPlanets<PlanetsResponse>({ page, limit: 10 });
+      return fetchPlanets({ page, limit });
     },
 
     planet: async (_: any, { id }: { id?: number }): Promise<Planet> => {
-      return fetchPlanet<Planet>({ id });
+      return fetchPlanet({ id });
     },
   },
 
