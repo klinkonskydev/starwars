@@ -1,5 +1,11 @@
-pre-push:
+pre-commit:
+  parallel: true
   commands:
-    check:
-      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
-      run: npx @biomejs/biome check --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {push_files}
+    lint:
+      run: npm run biome:format
+      include: "./src/**/*.{js,jsx,ts,tsx}"
+      exclude: "node_modules"
+    tests:
+      run: npm run test
+      include: "./src/**/*.{js,jsx,ts,tsx}"
+      exclude: "node_modules"
