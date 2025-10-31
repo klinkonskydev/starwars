@@ -1,4 +1,4 @@
-import { Planet, PlanetsResponse } from "../types/back-end/planets";
+import { Planet, PlanetsResponse } from "../types/backend/planets";
 import { ONE_DAY_IN_SECONDS } from "../utils/constant";
 
 type FetchPlanetsParams = { page?: number; limit?: number; id?: number };

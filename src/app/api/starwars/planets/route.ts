@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cache } from "react";
-import { PlanetsResponse } from "../../../../types/back-end/planets";
+import { PlanetsResponse } from "../../../../types/backend/planets";
 import { ONE_DAY_IN_SECONDS, QUERY_PARAMS } from "../../../../utils/constant";
 
 export const GET = cache(async (req: NextRequest) => {

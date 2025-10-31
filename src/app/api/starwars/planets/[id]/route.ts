@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cache } from "react";
-import { Planet } from "../../../../../types/back-end/planets";
+import { Planet } from "../../../../../types/backend/planets";
 import { ONE_DAY_IN_SECONDS } from "../../../../../utils/constant";
 
 export const dynamic = "force-static";

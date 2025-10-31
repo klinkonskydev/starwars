@@ -1,12 +1,12 @@
-import { Pagination } from "../../components/Pagination";
-import { Card } from "../../components/PlanetCard";
-import { client } from "../../lib/apollo-cient";
+import { Pagination } from "../Pagination";
+import { Card } from "../PlanetCard";
+import { client } from "../../lib/apollo-client";
 import { GET_PLANETS } from "../../lib/graphql/queries";
-import { PlanetsResponse } from "../../types/back-end/planets";
+import { PlanetsResponse } from "../../types/backend/planets";
 
-type PlanetsLayoutProps = { page: number };
+type PlanetCardListProps = { page: number };
 
-export async function PlanetsLayout({ page }: PlanetsLayoutProps) {
+export async function PlanetCardList({ page }: PlanetCardListProps) {
   const { data, error } = await client.query<{ planets: PlanetsResponse }>({
     query: GET_PLANETS,
     variables: { page },
