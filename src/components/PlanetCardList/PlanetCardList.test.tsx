@@ -2,8 +2,6 @@ import { test, expect, describe, mock } from "bun:test";
 import { render, screen } from "@testing-library/react";
 import ResponsivePagination from "react-responsive-pagination";
 
-import { PlanetCardList } from ".";
-
 mock.module("../PlanetCard", () => ({
   __esModule: true,
   Card: () => {
@@ -53,7 +51,7 @@ describe("<PlanetCardList />", () => {
 
     render(await PlanetCardList({ page: 1 }));
 
-    const planets = screen.getAllByText(/planet/gi);
+    const planets = screen.getAllByText(/planet/i);
     expect(planets).toHaveLength(10);
   });
 });

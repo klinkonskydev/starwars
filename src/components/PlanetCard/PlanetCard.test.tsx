@@ -27,9 +27,9 @@ describe("<PlanetCard />", () => {
   });
 
   test("Must render the component correctly", () => {
-    const name = screen.getByText(/mockedname/gi);
-    const terrain = screen.getByText(/terrain/gi);
-    const diameter = screen.getByText(/diameter/gi);
+    const name = screen.getByText(/mockedname/i);
+    const terrain = screen.getByText(/terrain/i);
+    const diameter = screen.getByText(/diameter/i);
 
     expect(name).toBeInTheDocument();
     expect(terrain).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe("<PlanetCard />", () => {
   });
 
   test("Must format the diameter to the en pattern", () => {
-    const diameter = screen.getByText(/diameter/gi);
+    const diameter = screen.getByText(/diameter/i);
     const diameterValue = screen.getByText("1,000");
     const wrongDiameterFormatValue = screen.queryByText("1000");
 
@@ -48,8 +48,8 @@ describe("<PlanetCard />", () => {
   });
 
   test("Films must be listed correctly", () => {
-    const firstFilmTitle = screen.getByText(/a new hope/gi);
-    const secondFilmTitle = screen.getByText(/return of the jedi/gi);
+    const firstFilmTitle = screen.getByText(/a new hope/i);
+    const secondFilmTitle = screen.getByText(/return of the jedi/i);
 
     expect(firstFilmTitle).toBeInTheDocument();
     expect(secondFilmTitle).toBeInTheDocument();
