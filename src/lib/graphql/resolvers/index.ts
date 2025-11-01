@@ -13,7 +13,7 @@ export const resolvers = {
   Query: {
     planets: async (
       _: any,
-      { page = 1, search }: { page?: number; search?: string },
+      { page, search }: { page?: number; search?: string },
     ): Promise<PlanetsResponse> => {
       return fetchPlanets({ page, search });
     },

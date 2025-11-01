@@ -8,8 +8,8 @@ export async function fetchPlanets({
   search,
 }: FetchPlanetsParams): Promise<PlanetsResponse> {
   const queryString = new URLSearchParams({
-    page: String(page),
-    search,
+    ...(!!page && { page: String(page) }),
+    ...(!!search && { search }),
   }).toString();
 
   const response = await fetch(
