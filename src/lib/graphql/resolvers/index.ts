@@ -7,7 +7,6 @@ import {
   Vehicle,
 } from "../../../types/backend/planets";
 import { GraphqlPerson, GraphqlPlanet } from "../../../types/graphql/planets";
-import { MAX_PLANETS_QUANTITY } from "../../../utils/constant";
 import { fetchPlanets, fetchMultiple, fetchPlanet } from "../../api";
 
 export const resolvers = {
@@ -16,10 +15,10 @@ export const resolvers = {
       _: any,
       {
         page = 1,
-        limit = MAX_PLANETS_QUANTITY,
-      }: { page?: number; limit?: number },
+        search
+      }: { page?: number; search?: string },
     ): Promise<PlanetsResponse> => {
-      return fetchPlanets({ page, limit });
+      return fetchPlanets({ page, search });
     },
 
     planet: async (_: any, { id }: { id?: number }): Promise<Planet> => {

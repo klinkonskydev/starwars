@@ -54,7 +54,7 @@ export const typeDefs = gql`
   }
 
   type Query {
-    planets(page: Int): PlanetsResponse!
+    planets(page: Int, search: String): PlanetsResponse!
     planet(id: Int!): Planet
   }
 `;

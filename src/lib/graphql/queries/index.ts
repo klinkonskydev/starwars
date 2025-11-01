@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_PLANETS = gql`
-  query GetPlanets($page: Int) {
-    planets(page: $page) {
+  query GetPlanets($page: Int, $search: String) {
+    planets(page: $page, search: $search) {
       count
       next
       previous

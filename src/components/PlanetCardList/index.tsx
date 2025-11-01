@@ -4,12 +4,12 @@ import { client } from "../../lib/apollo-client";
 import { GET_PLANETS } from "../../lib/graphql/queries";
 import { PlanetsResponse } from "../../types/backend/planets";
 
-type PlanetCardListProps = { page: number };
+type PlanetCardListProps = { page: number, search?: string };
 
-export async function PlanetCardList({ page }: PlanetCardListProps) {
+export async function PlanetCardList({ page, search }: PlanetCardListProps) {
   const { data, error } = await client.query<{ planets: PlanetsResponse }>({
     query: GET_PLANETS,
-    variables: { page },
+    variables: { page, search },
   });
 
   if (error) return null;
