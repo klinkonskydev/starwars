@@ -9,8 +9,8 @@ export default function Home({
   searchParams?: Usable<{ [key: string]: string | undefined }>;
 }) {
   const params = use(searchParams);
-  const pageParam = Number(params?.[QUERY_PARAMS.PAGE]) ?? 1
-  const searchParam = params?.[QUERY_PARAMS.SEARCH_PLANET_BY_NAME] ?? ''
+  const pageParam = Number(params?.[QUERY_PARAMS.PAGE]) ?? 1;
+  const searchParam = params?.[QUERY_PARAMS.SEARCH_PLANET_BY_NAME] ?? "";
 
   return (
     <main className="px-10 mx-auto max-w-7xl space-y-8">

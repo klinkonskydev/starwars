@@ -8,7 +8,7 @@ import { useQueryString } from "../../hooks/useQueryString";
 const MAX_ITEMS_PER_PAGE = 10;
 
 function Pagination({ total }: { total: number }) {
-  const { createQueryString } = useQueryString()
+  const { createQueryString } = useQueryString();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -26,9 +26,9 @@ function Pagination({ total }: { total: number }) {
       current={current}
       total={Math.ceil(total / MAX_ITEMS_PER_PAGE)}
       onPageChange={handleWithPage}
-      key='Pagination'
+      key="Pagination"
     />
   );
 }
 
-export { Pagination }
+export { Pagination };

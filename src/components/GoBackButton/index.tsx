@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import ArrowBackIcon from "../Icons/ArrowBack";
 

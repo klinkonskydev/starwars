@@ -5,11 +5,11 @@ type FetchPlanetsParams = { page?: number; search?: string; id?: number };
 
 export async function fetchPlanets({
   page,
-  search
+  search,
 }: FetchPlanetsParams): Promise<PlanetsResponse> {
   const queryString = new URLSearchParams({
     page: String(page),
-    search
+    search,
   }).toString();
 
   const response = await fetch(

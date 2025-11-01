@@ -25,6 +25,6 @@ export function useQueryString() {
 
   return {
     createQueryString,
-    deleteQueryString
-  }
+    deleteQueryString,
+  };
 }
