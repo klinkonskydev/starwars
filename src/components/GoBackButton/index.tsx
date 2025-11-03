@@ -9,7 +9,7 @@ export function GoBackButton() {
       onClick={() => window.history.back()}
     >
       <ArrowBackIcon width={26} height={26} fill="white" />
-      <span>Voltar para a pagina anterior</span>
+      <span>Go back</span>
     </button>
   );
 }
