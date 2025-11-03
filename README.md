@@ -1,3 +1,5 @@
+![Star_Wars_Logo](https://github.com/user-attachments/assets/596cf7e7-6443-433e-8fa5-3990b52ca397)
+
 Aplicação Next.js que consome a SWAPI (Star Wars API) via GraphQL para listar planetas com:
 - Paginação de 10 itens por página
 - Busca por nome com debounce de 600ms
