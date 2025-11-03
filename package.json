@@ -13,7 +13,8 @@
     "biome:lint": "biome lint ./src",
     "biome:format": "biome format ./src --write",
     "biome:check": "biome check ./src",
-    "biome:check:apply": "biome check ./src --apply"
+    "biome:check:apply": "biome check ./src --apply",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@apollo/client": "^4.0.8",
@@ -36,6 +37,7 @@
     "@types/node": "24.9.2",
     "@types/react": "19.2.2",
     "babel-plugin-react-compiler": "1.0.0",
+    "cypress": "^15.5.0",
     "lefthook": "^2.0.2",
     "tailwindcss": "^4",
     "typescript": "5.9.3"

@@ -1,4 +1,3 @@
-import { platform } from "os";
 import { client } from "../../lib/apollo-client";
 import { GET_PLANET_DETAILS } from "../../lib/graphql/queries";
 import { Planet } from "../../types/backend/planets";
@@ -15,10 +14,10 @@ export async function PlanetDetails({ id }: PlanetCardListProps) {
 
   return (
     <section className="w-full space-y-12">
-      <p className="text-3xl text-center">
-        Wellcome to the <b className="text-primary">{data.planet.name}</b>{" "}
+      <h1 className="text-3xl text-center">
+        Welcome to the <b className="text-primary">{data.planet.name}</b>{" "}
         planet!
-      </p>
+      </h1>
 
       <span className="text-center block text-neutral-300 text-lg ">
         Here's some details before your trip
@@ -90,9 +89,11 @@ export async function PlanetDetails({ id }: PlanetCardListProps) {
         </p>
       </div>
 
-      <span className="text-center block text-neutral-300 text-lg">
-        Maybe you also must know the natives
-      </span>
+      {!!data.planet.residents.length && (
+        <h3 className="text-center block text-neutral-300 text-lg">
+          Maybe you also must know the natives
+        </h3>
+      )}
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 w-full">
         {data.planet.residents.map((resident) => (

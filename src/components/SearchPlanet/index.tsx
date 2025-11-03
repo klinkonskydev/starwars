@@ -1,9 +1,8 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { QUERY_PARAMS } from "../../utils/constant";
-import { useQueryString } from "../../hooks/useQueryString";
 import { useDebounce } from "../../hooks/useDebounce";
 
 type SearchPlanetProps = {
@@ -14,19 +13,24 @@ export function SearchPlanet({
   initialValue = "",
   ...props
 }: SearchPlanetProps) {
-  const { createQueryString, deleteQueryString } = useQueryString();
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const [value, setValue] = useState(initialValue);
   const debouncedValue = useDebounce(value, 600);
 
   useEffect(() => {
-    const queryString = !debouncedValue.trim().length
-      ? deleteQueryString(QUERY_PARAMS.SEARCH_PLANET_BY_NAME)
-      : createQueryString(QUERY_PARAMS.SEARCH_PLANET_BY_NAME, value);
+    const params = new URLSearchParams(searchParams.toString());
+    const searchIsEmpty = !debouncedValue.trim().length
 
-    router.push(pathname + "?" + queryString);
+    if (!searchIsEmpty) params.delete(QUERY_PARAMS.PAGE)
+
+    searchIsEmpty
+      ? params.delete(QUERY_PARAMS.SEARCH_PLANET_BY_NAME)
+      : params.set(QUERY_PARAMS.SEARCH_PLANET_BY_NAME, value);
+
+    router.push(pathname + "?" + params.toString());
   }, [debouncedValue]);
 
   return (
