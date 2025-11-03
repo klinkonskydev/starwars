@@ -14,6 +14,7 @@ export function Card(planet: PlanetCardProps) {
     <Link
       href={`/${planetNumber}`}
       className="bg-black border border-primary flex flex-col gap-5 py-5 px-10 text-white rounded-lg h-84 cursor-pointer hover:bg-yellow-950/5 transition-all"
+      prefetch={true}
     >
       <p className="text-center text-primary font-medium text-xl">
         {planet.name}

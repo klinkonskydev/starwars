@@ -1,15 +1,15 @@
 import { Planet, PlanetsResponse } from "../types/backend/planets";
 import { ONE_DAY_IN_SECONDS } from "../utils/constant";
 
-type FetchPlanetsParams = { page?: number; limit?: number; id?: number };
+type FetchPlanetsParams = { page?: number; search?: string; id?: number };
 
 export async function fetchPlanets({
   page,
-  limit,
+  search,
 }: FetchPlanetsParams): Promise<PlanetsResponse> {
   const queryString = new URLSearchParams({
-    page: String(page),
-    limit: String(limit),
+    ...(!!page && { page: String(page) }),
+    ...(!!search && { search }),
   }).toString();
 
   const response = await fetch(

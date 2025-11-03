@@ -7,15 +7,17 @@ export const GET = cache(async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
     const page = searchParams.get(QUERY_PARAMS.PAGE);
+    const search = searchParams.get(QUERY_PARAMS.SEARCH_PLANET_BY_NAME);
+    const queryString = searchParams.toString()
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SWAPI}/planets/?page=${page}`,
+      `${process.env.NEXT_PUBLIC_SWAPI}/planets?${queryString}`,
       {
         headers: { "Content-Type": "application/json" },
         cache: "force-cache",
         next: {
           revalidate: ONE_DAY_IN_SECONDS,
-          tags: ["planets", "page", page],
+          tags: ["planets", "page", page, search],
         },
       },
     );
