@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Aplicação Next.js que consome a SWAPI (Star Wars API) via GraphQL para listar planetas com:
+- Paginação de 10 itens por página
+- Busca por nome com debounce de 600ms
+- Cache no Next.js e Apollo Client para melhor performance
 
-## Getting Started
+Stack: Next.js 16, React 19, TypeScript, GraphQL (graphql-yoga), Apollo Client, Tailwind CSS, Bun, Biome, Cypress, Testing Library. Hooks de Git com Lefthook para formatar/checar código a cada commit.
 
-First, run the development server:
+---
+### Requisitos obrigatórios
+- Pagina para a listagem dos planetas
+- Pagina para os detalhes do planeta
+- Mobile-First
+- Funcionalidade de rotass
+- Paginacao com 10 planetas por pagina
+- Busca por nome
+- Sem pacotes terceiros para busca do SWAPI
 
+---
+### Requisitos opcionais implementados
+- Testes E2E
+- Testes Unitários
+- Utilização de SAAS (globals.css)
+- Programação funcional
+
+---
+
+### Requisitos para instalação
+- Bun instalado: [bun.sh](https://bun.sh/)
+- (Opcional) Cypress para E2E
+- Variaveis de ambiente
+  - NEXT_PUBLIC_SWAPI="https://swapi.dev/api"
+  - NEXT_PUBLIC_HOST="http://localhost:3000"
+---
+
+### Instalação e Execução
+1) Instalar dependências
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2) Ambiente de desenvolvimento
+```bash
+bun run dev
+# http://localhost:3000
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3) Build e produção
+```bash
+bun run build
+bun run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### Comandos Úteis
+- Lint e formatação (Biome):
+```bash
+bun run lint
+bun run format
+```
 
-To learn more about Next.js, take a look at the following resources:
+- Testes (Testing Library + bun test):
+```bash
+bun run test
+bun run test:watch
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- E2E (Cypress):
+```bash
+bun run cypress:open
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### Principais Tecnologias
+- Frontend: Next.js, React, Tailwind CSS
+- Dados: GraphQL (graphql-yoga), Apollo Client, SWAPI
+- Qualidade: Biome, Lefthook
+- Testes: bun test (Testing Library), Cypress
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Observações
+- Paginação: 10 planetas por página
+- Busca: por nome com debounce de 600ms
+- Cache: Next.js + Apollo para respostas rápidas
